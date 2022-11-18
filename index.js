@@ -12,7 +12,7 @@ app.use(express.urlencoded({
     extended: true
 }))
 
-////////////////////// Login
+////////////////////// Login de l'utilisateur
 app.post('/api/auth/login', async(req, res) =>{
 
   const body = req.body
@@ -124,7 +124,7 @@ console.log(hash)
 
 })
 
-///////////////// Profile
+///////////////// Profile de l'utilisateur
 app.get('/api/user/profile',checkJwt ,async(req, res) =>{
 
   const user = await User.findOne({ email : res.locals.jwtPayload.email }) 
@@ -140,7 +140,7 @@ res.status(200).json({
 })
 })
 
-///////////////////////////// Name and Prenom Edit
+///////////////////////////// Name and Prenom Edit de notre utilisateur
 
 app.put("/api/user/edit", checkJwt , async (req, res) => {
 
@@ -162,7 +162,7 @@ res.status(200).json({
  
 })
 
-///////////////////// Password Edit
+///////////////////// Password Edit de notre utilisateur
 app.put("/api/user/edit-password", checkJwt , async (req, res) => {
   const body = req.body;
 
@@ -193,7 +193,7 @@ res.status(200).json({
  
 })
 
-////////////////// phone number edit
+////////////////// phone number edit de notre utilisateur
 
 app.put("/api/user/edit-phone", checkJwt , async (req, res) => {
 
@@ -211,7 +211,7 @@ app.put("/api/user/edit-phone", checkJwt , async (req, res) => {
   })
 })
 
-/////////////////// Email Edit
+/////////////////// Email Edit de notre utilisateur
 
 app.put("/api/user/edit-email", checkJwt , async (req, res) => {
 
@@ -229,7 +229,7 @@ app.put("/api/user/edit-email", checkJwt , async (req, res) => {
   })
 })
 
-//////////////////// Connected user delete
+//////////////////// Connected user delete de notre utilisateur
 app.delete("/api/user/delete", checkJwt ,async (req, res) => {
 
  await User.findOneAndRemove({ email : res.locals.jwtPayload.email }) ;
@@ -239,7 +239,7 @@ app.delete("/api/user/delete", checkJwt ,async (req, res) => {
     message: "user deleted"
     })
   })
-//////////////////////// connexion 
+//////////////////////// Connexion initial 
 const start = async () => {
   try {
     mongoose.connect(
